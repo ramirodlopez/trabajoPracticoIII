@@ -1,99 +1,43 @@
-
+from Camion.Camion import Camion
 from Contenedor.Contenedor import Contenedor
 
 class Pedido:
-   
+    def __init__(self, mercaderia, cliente, destino, servicio_completo):
+        self.mercaderia = mercaderia
+        self.cliente = cliente
+        self.destino = destino
+        self.servicio_completo = servicio_completo
+        # recibir costo_pedido
 
-   
-
-    def __init__(self):
-        self.mercaderia = None
-        self.cliente = None
-        self.destino = 0.0
-        self.servicioCompleto = False
-
-    def getMercaderia(self):
+    def get_mercaderia(self):
         return self.mercaderia
 
-    def setMercaderia(self, mercaderia):
+    def set_mercaderia(self, mercaderia):
         self.mercaderia = mercaderia
 
-    def getCliente(self):
+    def get_cliente(self):
         return self.cliente
 
-    def setCliente(self, cliente):
+    def set_cliente(self, cliente):
         self.cliente = cliente
 
-    def getDestino(self):
+    def get_destino(self):
         return self.destino
 
-    def setDestino(self, destino):
+    def set_destino(self, destino):
         self.destino = destino
 
-    def getServicioCompleto(self):
-        return self.servicioCompleto
+    def get_servicio_completo(self):
+        return self.servicio_completo
 
-    def setServicioCompleto(self, servicioCompleto):
-        self.servicioCompleto = servicioCompleto
-
-    def restoCon(self, number):
-        resto = number % 100
-
-        cant_cien_kilos = 0
-
-        if resto == 0:
-            cant_cien_kilos = number // 100  # 300 // 100 = 3; 3*1000
-        else:
-            cant_cien_kilos = number // 100 + 1  # 469 // 100 = 4 + 1
+    def set_servicio_completo(self, servicio_completo):
+        self.servicio_completo = servicio_completo
 
 
-        return cant_cien_kilos
-
-
-
-    def precioPedido(self, contenedor: Contenedor):
-        precioContenedor = 1
-        precioCamion = 1
-        cant_cien_kilos = 0
-
-        # VER SI USA CAMION
-        if self.servicioCompleto:
-            precioCamion = 20000
-
-        # CALCULAR CANTIDAD DE 100KG DEL CONTENEDOR
-        resto = contenedor.get_peso_ocupado() % 100
-        if resto == 0:
-            cant_cien_kilos = contenedor.get_peso_ocupado() // 100  # 300 // 100 = 3; 3*1000
-        else:
-            cant_cien_kilos = contenedor.get_peso_ocupado() // 100 + 1  # 469 // 100 = 4 + 1
-
-        # LOGICA
-        # 100
-        if self.destino < 100 and contenedor.get_completo():
-            precioContenedor = 200000
-        elif self.destino < 100 and not contenedor.get_completo():
-            precioContenedor = cant_cien_kilos * 1000
-
-        # 1000
-        if 100 <= self.destino < 1000 and contenedor.get_completo():
-            precioContenedor = 210000
-        elif 100 <= self.destino < 1000 and not contenedor.get_completo():
-            precioContenedor = cant_cien_kilos * 1100
-
-        # 10000
-        if 1000 <= self.destino < 10000 and contenedor.get_completo():
-            precioContenedor = 230000
-        elif 1000 <= self.destino < 10000 and not contenedor.get_completo():
-            precioContenedor = cant_cien_kilos * 1150
-
-        # 100000
-        if self.destino >= 10000 and contenedor.get_completo():
-            precioContenedor = 250000
-        elif self.destino >= 10000 and not contenedor.get_completo():
-            precioContenedor = cant_cien_kilos * 1500
-
-        # FINAL
-        return precioContenedor * precioCamion
-
-        
-
+    
+    def usa_camion(self):
+        precio = 0
+        if(self.get_servicio_completo):
+            precio = Camion.get_precio()
+       
+        return precio
