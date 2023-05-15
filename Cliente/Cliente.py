@@ -1,4 +1,4 @@
-from Mercaderia.Mercaderia import Mercaderia
+from mercaderia.Mercaderia import Mercaderia
 from Pedido.Pedido import Pedido
 
 
