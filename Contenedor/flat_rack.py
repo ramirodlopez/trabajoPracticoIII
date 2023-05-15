@@ -1,19 +1,15 @@
 from typing_extensions import override
 
-from contenedor.contenedor import Contenedor
-'''
- * Este contenedor no tiene ancho, por ende hereda directamente de {@link Container}.
-'''
+from Contenedor.Contenedor import Contenedor
 class FlatRack(Contenedor):
     def __init__(self,id, especial):
         super().__init__(id, especial)
         self._largo = 6.0
         self._pesoMax = 45000
         self._volumen = 33
-    
-    '''
-     * Entra a lo alto porque no tiene techo.
-    '''
+        self._alto_exteriror = 2.3
+        self._largo_exteriror = 6.1
+        
     @override
     def entra_alto(self, alto_mercaderia):
         return True
