@@ -1,5 +1,5 @@
-from Contenedor.Contenedor import Contenedor
-from Pedido.Pedido import Pedido
+
+
 
 
 class Calculador_Precio_Pedido():
@@ -19,7 +19,7 @@ class Calculador_Precio_Pedido():
 
 
 
-     def calcular_precio_pedido(self, pedido: Pedido, contenedor: Contenedor) -> float:
+     def calcular_precio_pedido(self, pedido, contenedor):
         precio_contenedor = 1
         precio_camion = 1
         cant_cien_kilos = self.calcular_kilos(contenedor)
