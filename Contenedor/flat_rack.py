@@ -7,8 +7,8 @@ class FlatRack(Contenedor):
         self._largo = 6.0
         self._pesoMax = 45000
         self._volumen = 33
-        self._alto_exteriror = 2.3
-        self._largo_exteriror = 6.1
+        self._alto_exterior = 2.3
+        self._largo_exterior = 6.1
         
     @override
     def entra_alto(self, alto_mercaderia):

@@ -1,7 +1,4 @@
 
-
-
-
 class Calculador_Precio_Pedido():
 
 
@@ -19,29 +16,30 @@ class Calculador_Precio_Pedido():
 
 
 
-     def calcular_precio_pedido(self, pedido, contenedor):
+     def calcular_precio_pedido(self, pedido, contenedor, gps):
         precio_contenedor = 1
         precio_camion = 1
         cant_cien_kilos = self.calcular_kilos(contenedor)
+        distancia = gps.calcular_distancia("origen",pedido.get_destino())
 
         # VER SI USA CAMION
         if pedido.servicio_completo:
             precio_camion = 20000
 
         # LOGICA
-        if pedido.get_destino() < 100:
+        if distancia < 100:
             if contenedor.esta_completo():
                 precio_contenedor = 200000
             else:
                 precio_contenedor = cant_cien_kilos * 1000
 
-        elif 100 <= pedido.get_destino() < 1000:
+        elif 100 <= distancia < 1000:
             if contenedor.esta_completo():
                 precio_contenedor = 210000
             else:
                 precio_contenedor = cant_cien_kilos * 1100
 
-        elif 1000 <= pedido.get_destino() < 10000:
+        elif 1000 <= distancia < 10000:
             if contenedor.esta_completo():
                 precio_contenedor = 230000
             else:

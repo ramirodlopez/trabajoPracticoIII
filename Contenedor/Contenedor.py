@@ -12,8 +12,8 @@ class Contenedor(ABC):
         self._volumen_ocupado = 0.0 
         self._completo = False
         self._mercaderias = []
-        self._alto_exteriror = 0.0
-        self._largo_exteriror = 0.0
+        self._alto_exterior = 0.0
+        self._largo_exterior = 0.0
 
     def cargar_mercaderia(self, mercaderia, verificar_restriccion_mercaderia):
         verificar_restriccion_mercaderia.verificar_restricciones(self)
@@ -81,10 +81,10 @@ class Contenedor(ABC):
         return self._mercaderias
     
     def get_alto_exterior(self):
-        return self._alto_exteriror
+        return self._alto_exterior
     
     def get_largo_exterior(self):
-        return self._largo_exteriror
+        return self._largo_exterior
 
     
 
