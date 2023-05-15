@@ -1,6 +1,6 @@
 from typing import List
 from abc import ABC, abstractmethod
-from mercaderia.mercaderia import Mercaderia
+
 class Contenedor(ABC):
     def __init__(self, id, especial) ->None:
         self._id = id
@@ -12,9 +12,11 @@ class Contenedor(ABC):
         self._volumen_ocupado = 0.0 
         self._completo = False
         self._mercaderias = []
+        self._alto_exteriror = 0.0
+        self._largo_exteriror = 0.0
 
-    def cargar_mercaderia(self, mercaderia: Mercaderia):
-        mercaderia.verificar_restricciones(self)
+    def cargar_mercaderia(self, mercaderia, verificar_restriccion_mercaderia):
+        verificar_restriccion_mercaderia.verificar_restricciones(self)
         self._mercaderias.append(mercaderia)
         self._peso_ocupado += mercaderia.get_peso()
         self._volumen_ocupado += mercaderia.devolver_volumen()
@@ -60,19 +62,29 @@ class Contenedor(ABC):
     def get_peso_ocupado(self):
         return self._peso_ocupado
 
+    def set_peso_ocupado(self, valor):
+        self._peso_ocupado = valor
+
     def get_volumen(self):
         return self._volumen
 
     def get_volumen_ocupado(self):
         return self._volumen_ocupado
+    
+    def set_volumen_ocupado(self, valor):
+        self._volumen_ocupado = valor
 
     def esta_completo(self):
         return self._completo
 
-    def get_mercaderias(self) -> List[Mercaderia]:
+    def get_mercaderias(self) -> List:
         return self._mercaderias
     
-
+    def get_alto_exterior(self):
+        return self._alto_exteriror
     
+    def get_largo_exterior(self):
+        return self._largo_exteriror
+
     
 
