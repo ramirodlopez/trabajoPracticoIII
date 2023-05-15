@@ -1,5 +1,5 @@
 from mercaderia.Mercaderia import Mercaderia
-from Pedido.Pedido import Pedido
+from pedido.Pedido import Pedido
 
 
 class Cliente:
@@ -15,7 +15,7 @@ class Cliente:
         self.nombre = nombre
 
     def get_id_cliente(self):
-        return self.id_cliente
+        return self.id_cliente                                                                                                                                                                                                                       
 
     def set_id_cliente(self, id_cliente):
         self.id_cliente = id_cliente
