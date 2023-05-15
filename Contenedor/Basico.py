@@ -9,9 +9,9 @@ class Basico(Contenedor):
         self._largo = 6.0
         self._peso_max = 24000
         self._volumen = 32.42999999999999
-        self._ancho_exteriror = 2.45
-        self._alto_exteriror = 2.6
-        self._largo_exteriror = 6.1
+        self._ancho_exterior = 2.45
+        self._alto_exterior = 2.6
+        self._largo_exterior = 6.1
 
     @override
     def entra_ancho(self, ancho_mercaderia):
@@ -28,4 +28,4 @@ class Basico(Contenedor):
         return self._ancho   
     
     def get_ancho_exterior(self):
-        return self._ancho_exteriror
+        return self._ancho_exterior
