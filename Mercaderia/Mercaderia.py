@@ -1,48 +1,15 @@
-from excepcion.restriccion_excepcion import RestriccionException
-
 class Mercaderia():
-    def __init__(self, esEspecial, ancho, alto, largo, peso):
+    def __init__(self, esEspecial, ancho, alto, largo, peso, id):
         self.es__especial = esEspecial
         self.__alto = alto
         self.__largo = largo
         self.__ancho = ancho
         self.__peso = peso
-
-    
-    def verificar_restricciones(self, contenedor: 'Contenedor'):
-        self.verificar_especial(contenedor)
-        self.verificar_largo(contenedor)
-        self.verificar_alto(contenedor)
-        self.verificar_volumen(contenedor)
-        self.verificar_ancho(contenedor)
-        self.verificar_peso(contenedor)
-
-    def verificar_especial(self, contenedor: 'Contenedor'):
-        if (self.es__especial and not contenedor.is_especial()):
-            raise RestriccionException("No se puede cargar una mercadería especial en este contenedor.")
-    
-    def verificar_alto(self, contenedor: 'Contenedor'):
-        if (not contenedor.entra_alto(self.__alto)):
-            raise RestriccionException("El alto de la mercadería es mayor que la del contenedor.")
-
-    def verificar_largo(self, contenedor: 'Contenedor'):
-        if (self.__largo > contenedor.get_largo()): 
-            raise RestriccionException("El largo de la mercadería es mayor que la del contenedor.")
-
-    def verificar_volumen(self, contenedor: 'Contenedor'):
-        if (self.devolver_volumen() > contenedor.get_volumen() - contenedor.get_volumen_ocupado()): 
-            raise RestriccionException("El volumen de la mercadería es mayor que la del contenedor.")
-
-    def verificar_ancho(self, contenedor: 'Contenedor'):
-        if (not contenedor.entra_ancho(self.__ancho)):
-            raise RestriccionException("El ancho de la mercadería es mayor que la del contenedor.")
-
-    def verificar_peso(self, contenedor: 'Contenedor'):
-        if (self.__peso > contenedor.get_peso_max() - contenedor.get_peso_ocupado()): 
-            raise RestriccionException("El peso de la mercadería es mayor que la del contenedor.")
+        self.__id = id
 
     def get_es_especial(self):
         return self.es__especial
+    
     def set_es_especial(self, valor):
         self.es__especial = valor
 
@@ -70,5 +37,21 @@ class Mercaderia():
     def set_peso(self, valor):
         self.__peso = valor
 
+    def get_id(self):
+        return self.__id
+    
+    def set_id(self, valor):
+        self.__id = valor
+
     def devolver_volumen(self):
         return self.__alto * self.__ancho * self.__largo
+
+
+    def __eq__(self, otra_instancia: object) -> bool:
+        resultado = False
+        if isinstance(otra_instancia, Mercaderia):
+            resultado = self.__id == otra_instancia.__id 
+        return resultado
+
+    def __hash__(self):
+        return hash(self.__id)
