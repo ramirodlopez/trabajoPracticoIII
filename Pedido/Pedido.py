@@ -7,7 +7,7 @@ class Pedido:
         self.cliente = cliente
         self.destino = destino
         self.servicio_completo = servicio_completo
-        # recibir costo_pedido
+        self.precio_pedido = 0
 
     def get_mercaderia(self):
         return self.mercaderia
@@ -32,11 +32,18 @@ class Pedido:
 
     def set_servicio_completo(self, servicio_completo):
         self.servicio_completo = servicio_completo
+    
+    def get_precio_pedido(self):
+        return self.precio_pedido
+
+    def set_precio_pedido(self, precio_pedido):
+        self.precio_pedido = precio_pedido
+
 
 
     
     def usa_camion(self):
-        precio = 0
+        precio = 1
         if(self.get_servicio_completo):
             precio = Camion.get_precio()
        
