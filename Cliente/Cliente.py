@@ -1,5 +1,5 @@
-from mercaderia.Mercaderia import Mercaderia
-from pedido.Pedido import Pedido
+from Mercaderia.Mercaderia import Mercaderia
+from Pedido.Pedido import Pedido
 
 
 class Cliente:
