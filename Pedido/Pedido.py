@@ -43,7 +43,7 @@ class Pedido:
 
     
     def usa_camion(self):
-        precio = 1
+        precio = 0
         if(self.get_servicio_completo):
             precio = Camion.get_precio()
        
