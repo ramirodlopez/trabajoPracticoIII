@@ -46,7 +46,6 @@ class Calculador_Precio_Pedido():
         precio_camion = self.obtener_usa_camion()
         c_completo = self.obtener_con_completo()
         
-        # LOGICAimage.png
         if distancia < 100:
             if c_completo:
                 precio_contenedor = 200000
