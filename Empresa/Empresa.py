@@ -4,6 +4,7 @@ class Empresa():
         self.__contenedores = contenedores
         self.__viajes = []
         self.__pedidos = []
+       
 
     def agregar_viaje(self, viaje):
         self.__viajes.append(viaje)
@@ -66,7 +67,7 @@ class Empresa():
                 cantidad_km += gps.obtener_distancia()
                 id_barco_a_cantidad_km[barco.get_id()] = cantidad_km
         
-        id_barco = funcion_para_comparacion(id_barco_a_cantidad_km, key = id_barco_a_cantidad_km.get) #obtenemos la clave con el mayor valor entero
+        id_barco = funcion_para_comparacion(id_barco_a_cantidad_km, key = id_barco_a_cantidad_km.get) 
         return self.buscar_barco_cantidad_km_recorridos(id_barco)
     
     def obtener_barco_con_mayor_cantidad_km_recorridos(self):

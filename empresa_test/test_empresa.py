@@ -74,9 +74,10 @@ class EmpresaTest(TestCase):
         contenedor.get_id.return_value = 123
         viaje.get_estado.return_value = "FINALIZADO"
         barcos = []
-        contenedores = []
+        contenedores = [contenedor]
         empresa = Empresa(barcos, contenedores)
         empresa.actualizar_cantidad_viajes_contenedor = Mock(return_value = {123:1})
         empresa.agregar_viaje(viaje)
         contenedor_buscado = empresa.obtener_contenedor_mayor_cantidad_viajes_completo_unica_carga()
-        self.assertIsNone(contenedor_buscado)
+        self.assertIsNotNone(contenedor_buscado)
+        self.assertEqual(contenedor_buscado, contenedor)
