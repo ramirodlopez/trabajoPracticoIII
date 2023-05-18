@@ -1,3 +1,6 @@
+from Pedido.Pedido import Pedido
+from Contenedor.Contenedor import Contenedor
+from Gps.Gps import Gps
 
 class Calculador_Precio_Pedido():
 
@@ -14,17 +17,36 @@ class Calculador_Precio_Pedido():
 
         return cant_cien_kilos
 
-
-
-     def calcular_precio_pedido(self, pedido, contenedor, gps):
-        precio_contenedor = 1
-        precio_camion = pedido.usa_camion()
-        c_completo = contenedor.esta_completo()
-        cant_cien_kilos = self.calcular_kilos(contenedor)
+     def obtener_distancia(self,gps,pedido):
         distancia = gps.calcular_distancia("origen",pedido.get_destino())
-
+        return distancia
      
-        # LOGICA
+     def obtener_usa_camion(self,pedido):
+         usa_camion = pedido.usa_camion()
+         if(usa_camion):
+             return 20000
+         else:
+             return 0
+    
+     def obtener_can_kilos(self,contenedor):
+         return self.calcular_kilos(contenedor)
+     
+     def obtener_con_completo(self,contenedor):
+          c_completo = contenedor.esta_completo()
+          if(c_completo):
+                return True
+          else:
+                return False
+
+
+     def calcular_precio_pedido(self):
+        precio_contenedor = 0
+        distancia = self.obtener_distancia()
+        cant_cien_kilos = self.obtener_can_kilos()
+        precio_camion = self.obtener_usa_camion()
+        c_completo = self.obtener_con_completo()
+        
+        # LOGICAimage.png
         if distancia < 100:
             if c_completo:
                 precio_contenedor = 200000
@@ -51,5 +73,5 @@ class Calculador_Precio_Pedido():
 
         
 
-        return pedido.set_precio_pedido(precio_contenedor * precio_camion)
+        return precio_contenedor + precio_camion
 
