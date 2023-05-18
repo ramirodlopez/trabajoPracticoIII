@@ -3,9 +3,9 @@ from Pedido.Pedido import Pedido
 
 
 class Cliente:
-    def __init__(self):
-        self.nombre = ""
-        self.id_cliente = None
+    def __init__(self,nombre,id_cliente):
+        self._nombre = nombre
+        self._id_cliente = id_cliente
         self.pedido = set()
 
     def get_nombre(self):
