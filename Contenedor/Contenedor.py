@@ -1,6 +1,8 @@
 from typing import List
 from abc import ABC, abstractmethod
 
+from excepcion.restriccion_excepcion import RestriccionException
+
 class Contenedor(ABC):
     def __init__(self, id, especial) ->None:
         self._id = id
@@ -85,7 +87,54 @@ class Contenedor(ABC):
         return self._largo_exterior
     
     def get_ancho_exterior(self):
-        pass
+        return self._ancho_exterior
+
+
+    def verificar_restricciones_barco_generales(self, barco):
+        es_valido = True
+
+        if not barco.validar_cant_container():
+            es_valido = False
+            barco._peso_total-= self.get_peso_ocupado()
+            raise RestriccionException("Un barco no puede cargar más containers del máximo definido")
+            
+
+        if not barco.validar_peso():
+            es_valido = False
+            barco._peso_total-= self.get_peso_ocupado()
+            raise RestriccionException("Un barco no puede cargar más peso del máximo definido")
+        
+        return es_valido
+    
+
+    def verificar_restricciones_barco_basico(self, basico):
+
+        es_valido = self.verificar_restricciones_barco_generales(basico)
+
+        if not basico.es_basico(self):
+            es_valido = False
+            basico._peso_total-= self.get_peso_ocupado()
+            raise RestriccionException("Un barco no puede cargar un container para el cual no fue diseñado.")
+        
+        if self.is_especial():
+            es_valido = False
+            basico._peso_total-= self.get_peso_ocupado()
+            raise RestriccionException("Un container con material especial (explosivos, desechos químicos o radioactivos) sólo puede ser \
+                            transportado por un barco diseñado para tal fin.")
+        
+        return es_valido
+        
+
+    def verificar_restricciones_barco_avanzado(self, avanzado):
+
+        es_valido = self.verificar_restricciones_barco_generales(avanzado)
+        
+        if not avanzado.es_avanzado(self):
+            avanzado._peso_total-= self.get_peso_ocupado()
+            es_valido = False
+            raise RestriccionException("Un barco no puede cargar un container para el cual no fue diseñado.")
+        
+        return es_valido
 
     
 
