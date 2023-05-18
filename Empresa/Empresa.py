@@ -27,8 +27,9 @@ class Empresa():
         id_contenedor_a_cantidad_viajes = {}
         for viaje in self.__viajes:
             if (viaje.get_estado() == "FINALIZADO"):
-                self.actualizar_cantidad_viajes_contenedor(self, viaje, id_contenedor_a_cantidad_viajes)
-
+                nuevo_id_contenedor_a_cantidad_viajes = self.actualizar_cantidad_viajes_contenedor(viaje, id_contenedor_a_cantidad_viajes)
+                if (nuevo_id_contenedor_a_cantidad_viajes != None):
+                    id_contenedor_a_cantidad_viajes = nuevo_id_contenedor_a_cantidad_viajes
         id_contenedor_max_viajes = max(id_contenedor_a_cantidad_viajes, key=id_contenedor_a_cantidad_viajes.get)
         return self.buscar_contenedor_por_id(id_contenedor_max_viajes)
     
@@ -53,7 +54,6 @@ class Empresa():
             if (contenedor.get_id() == id_contendedor_max_viajes):
                 return contenedor
     
-    #Falta test
     def obtener_barco_con_cantidad_km_recorridos(self, funcion_para_comparacion):
         id_barco_a_cantidad_km = {}
         for viaje in self.__viajes:

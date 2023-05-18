@@ -1,5 +1,5 @@
 from unittest import TestCase
-from unittest.mock import MagicMock
+from unittest.mock import Mock
 from Contenedor.Basico import Basico
 from Mercaderia.Mercaderia import Mercaderia
 
@@ -10,7 +10,7 @@ class ContainerTest(TestCase):
         alto = 1.2
         largo = 2
         
-        mercaderia_mock = MagicMock()
+        mercaderia_mock = Mock()
         mercaderia_mock.__esEspecial = False
         mercaderia_mock.__ancho = ancho
         mercaderia_mock.__alto = alto
@@ -21,11 +21,11 @@ class ContainerTest(TestCase):
         mercaderia_mock.get_peso.return_value = peso
         mercaderia_mock.devolver_volumen.return_value = ancho * alto * largo
 
-        verificar_restricciones_mercaderia = MagicMock()
+        verificar_restricciones_mercaderia = Mock()
         verificar_restricciones_mercaderia.verificar_restricciones.return_value = None 
 
         contenedor = Basico(132, False)
-        contenedor.verificar_completo = MagicMock(return_value = None)
+        contenedor.verificar_completo = Mock()(return_value = None)
         contenedor.cargar_mercaderia(mercaderia_mock, verificar_restricciones_mercaderia)    
 
         assert len(contenedor.get_mercaderias()) == 1

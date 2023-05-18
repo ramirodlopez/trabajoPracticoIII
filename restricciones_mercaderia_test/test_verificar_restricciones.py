@@ -1,7 +1,7 @@
 from unittest import TestCase
 import pytest
 from Contenedor.BasicoHC import BasicoHC
-from Excepcion.Restriccion_Excepcion import RestriccionException
+from Excepcion.restriccion_excepcion import RestriccionException
 from Mercaderia.Mercaderia import Mercaderia
 from Restricciones_Mercaderia.Verificar_Restricciones_Mercaderia import VerificarRestricciones
 
