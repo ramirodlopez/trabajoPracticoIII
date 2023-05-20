@@ -81,6 +81,3 @@ class Barco(ABC):
         if(self.get_peso_total() <= self.get_peso_max_sopor()):
             peso_valido = True
         return peso_valido
-
-
-    #Ver lo del tema del viaje o del gps para saber el barco que recorrio la mayor y menor cantidad de KM
