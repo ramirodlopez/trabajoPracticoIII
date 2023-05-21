@@ -3,7 +3,7 @@ from Barco.Avanzado import Avanzado
 from Barco.Basico import Basico
 from Contenedor.BasicoHC import BasicoHC
 from excepcion.restriccion_excepcion import RestriccionException
-from validacion_barco.Validar_Subir_Al_Barco import Validar_Subir_Al_Barco
+from Validacion_Barco.Validar_Subir_Al_Barco import Validar_Subir_Al_Barco
 
 class Test_Validar_Subir_Al_Barco(TestCase):
 

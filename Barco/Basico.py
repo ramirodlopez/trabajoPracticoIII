@@ -1,6 +1,6 @@
 from Barco.Barco import Barco
 from Contenedor.Contenedor import Contenedor
-from validacion_barco.Validar_Subir_Al_Barco import Validar_Subir_Al_Barco
+from Validacion_Barco.Validar_Subir_Al_Barco import Validar_Subir_Al_Barco
 
 
 class Basico(Barco):

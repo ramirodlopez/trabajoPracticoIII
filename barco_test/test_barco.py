@@ -5,7 +5,7 @@ from Contenedor.BasicoHC import BasicoHC
 from Contenedor.flat_rack import FlatRack
 from excepcion.restriccion_excepcion import RestriccionException
 from Gps.Gps import Gps
-from validacion_barco.Validar_Subir_Al_Barco import Validar_Subir_Al_Barco
+from Validacion_Barco.Validar_Subir_Al_Barco import Validar_Subir_Al_Barco
 
 class Test_Barco(TestCase):
 
