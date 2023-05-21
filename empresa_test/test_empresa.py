@@ -81,3 +81,89 @@ class EmpresaTest(TestCase):
         contenedor_buscado = empresa.obtener_contenedor_mayor_cantidad_viajes_completo_unica_carga()
         self.assertIsNotNone(contenedor_buscado)
         self.assertEqual(contenedor_buscado, contenedor)
+
+    
+    def test_obtener_barco_con_mayor_cantidad_km_recorridos(self):
+        # Creo una instancia de Empresa y algunos objetos necesarios para el test
+        viaje1 = Mock()
+        viaje2 = Mock()
+        barco1 = Mock()
+        barco2 = Mock()
+        gps1 = Mock()
+        gps2 = Mock()
+
+        
+        # Configuro los mocks necesarios para el test
+        viaje1.get_barco.return_value = barco1
+        viaje2.get_barco.return_value = barco2
+        barco1.get_gps.return_value = gps1
+        barco2.get_gps.return_value = gps2
+        gps1.obtener_distancia.return_value = 100
+        gps2.obtener_distancia.return_value = 200
+
+        # Configuro el valor de barco.get_id() para cada mock de barco
+        barco1.get_id.return_value = 1 # Configura el valor de get_id() para barco1
+        barco2.get_id.return_value = 2 # Configura el valor de get_id() para barco2
+
+        empresa = Empresa([barco1, barco2], [])
+
+        # Agrego los viajes a la lista de viajes de la empresa
+        empresa.agregar_viaje(viaje1)
+        empresa.agregar_viaje(viaje2)
+
+        # Ejecuto la funcion a testear
+        resultado = empresa.obtener_barco_con_mayor_cantidad_km_recorridos()
+
+        # Verifico que la funcion haya retornado el resultado esperado
+        self.assertEqual(resultado, barco2)
+
+        # Verifico que se hayan llamado correctamente los metodos de los mocks
+        viaje1.get_barco.assert_called_once()
+        viaje2.get_barco.assert_called_once()
+        barco1.get_gps.assert_called_once()
+        barco2.get_gps.assert_called_once()
+        gps1.obtener_distancia.assert_called_once()
+        gps2.obtener_distancia.assert_called_once()
+
+
+    def test_obtener_barco_con_menor_cantidad_km_recorridos(self):
+        # Creo una instancia de Empresa y algunos objetos necesarios para el test
+        viaje1 = Mock()
+        viaje2 = Mock()
+        barco1 = Mock()
+        barco2 = Mock()
+        gps1 = Mock()
+        gps2 = Mock()
+
+        
+        # Configuro los mocks necesarios para el test
+        viaje1.get_barco.return_value = barco1
+        viaje2.get_barco.return_value = barco2
+        barco1.get_gps.return_value = gps1
+        barco2.get_gps.return_value = gps2
+        gps1.obtener_distancia.return_value = 100
+        gps2.obtener_distancia.return_value = 200
+
+        # Configuro el valor de barco.get_id() para cada mock de barco
+        barco1.get_id.return_value = 1 # Configura el valor de get_id() para barco1
+        barco2.get_id.return_value = 2 # Configura el valor de get_id() para barco2
+
+        empresa = Empresa([barco1, barco2], [])
+
+        # Agrego los viajes a la lista de viajes de la empresa
+        empresa.agregar_viaje(viaje1)
+        empresa.agregar_viaje(viaje2)
+
+        # Ejecuto la funcion a testear
+        resultado = empresa.obtener_barco_con_menor_cantidad_km_recorridos()
+
+        # Verifico que la funcion haya retornado el resultado esperado
+        self.assertEqual(resultado, barco1)
+
+        # Verifico que se hayan llamado correctamente los metodos de los mocks
+        viaje1.get_barco.assert_called_once()
+        viaje2.get_barco.assert_called_once()
+        barco1.get_gps.assert_called_once()
+        barco2.get_gps.assert_called_once()
+        gps1.obtener_distancia.assert_called_once()
+        gps2.obtener_distancia.assert_called_once()
