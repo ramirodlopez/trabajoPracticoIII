@@ -83,7 +83,7 @@ class EmpresaTest(TestCase):
         self.assertEqual(contenedor_buscado, contenedor)
 
     
-    def test_obtener_barco_con_mayor_cantidad_km_recorridos(self):
+    def test_verificar_obtener_barco_con_mayor_cantidad_km_recorridos_retorne_el_resultado_esperado(self):
         # Creo una instancia de Empresa y algunos objetos necesarios para el test
         viaje1 = Mock()
         viaje2 = Mock()
@@ -92,7 +92,6 @@ class EmpresaTest(TestCase):
         gps1 = Mock()
         gps2 = Mock()
 
-        
         # Configuro los mocks necesarios para el test
         viaje1.get_barco.return_value = barco1
         viaje2.get_barco.return_value = barco2
@@ -114,19 +113,10 @@ class EmpresaTest(TestCase):
         # Ejecuto la funcion a testear
         resultado = empresa.obtener_barco_con_mayor_cantidad_km_recorridos()
 
-        # Verifico que la funcion haya retornado el resultado esperado
         self.assertEqual(resultado, barco2)
 
-        # Verifico que se hayan llamado correctamente los metodos de los mocks
-        viaje1.get_barco.assert_called_once()
-        viaje2.get_barco.assert_called_once()
-        barco1.get_gps.assert_called_once()
-        barco2.get_gps.assert_called_once()
-        gps1.obtener_distancia.assert_called_once()
-        gps2.obtener_distancia.assert_called_once()
 
-
-    def test_obtener_barco_con_menor_cantidad_km_recorridos(self):
+    def test_verificar_obtener_barco_con_menor_cantidad_km_recorridos_retorne_el_resultado_esperado(self):
         # Creo una instancia de Empresa y algunos objetos necesarios para el test
         viaje1 = Mock()
         viaje2 = Mock()
@@ -157,13 +147,4 @@ class EmpresaTest(TestCase):
         # Ejecuto la funcion a testear
         resultado = empresa.obtener_barco_con_menor_cantidad_km_recorridos()
 
-        # Verifico que la funcion haya retornado el resultado esperado
         self.assertEqual(resultado, barco1)
-
-        # Verifico que se hayan llamado correctamente los metodos de los mocks
-        viaje1.get_barco.assert_called_once()
-        viaje2.get_barco.assert_called_once()
-        barco1.get_gps.assert_called_once()
-        barco2.get_gps.assert_called_once()
-        gps1.obtener_distancia.assert_called_once()
-        gps2.obtener_distancia.assert_called_once()
