@@ -55,27 +55,6 @@ class Empresa():
             if (contenedor.get_id() == id_contendedor_max_viajes):
                 return contenedor
     
-    """def obtener_barco_con_cantidad_km_recorridos(self, funcion_para_comparacion):
-        id_barco_a_cantidad_km = {}
-        for viaje in self.__viajes:
-            barco = viaje.get_barco()
-            gps = barco.get_gps()
-            cantidad_km = id_barco_a_cantidad_km.get(barco.get_id())
-            if (cantidad_km is None):
-                id_barco_a_cantidad_km[barco.get_id()] = gps.obtener_distancia()
-            else:
-                cantidad_km += gps.obtener_distancia()
-                id_barco_a_cantidad_km[barco.get_id()] = cantidad_km
-        
-        id_barco = funcion_para_comparacion(id_barco_a_cantidad_km, key = id_barco_a_cantidad_km.get) 
-        return self.buscar_barco_cantidad_km_recorridos(id_barco)
-    
-    def obtener_barco_con_mayor_cantidad_km_recorridos(self):
-        return self.obtener_barco_con_cantidad_km_recorridos(max)
-    
-    def obtener_barco_con_menor_cantidad_km_recorridos(self):
-        return self.obtener_barco_con_cantidad_km_recorridos(min)"""
-    
     def buscar_barco_cantidad_km_recorridos(self, id_barco):
         for barco in self.__barcos:
             if barco.get_id() == id_barco:
