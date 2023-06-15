@@ -3,9 +3,13 @@ from Contenedor.Contenedor import Contenedor
 from Gps.Gps import Gps
 
 class Calculador_Precio_Pedido():
+    
+    def __init__(self, pedido):
+        self.pedido = pedido
+        
 
 
-     def calcular_kilos(self, number):
+    def calcular_kilos(self, number):
         resto = number % 100
         cant_cien_kilos = 0
 
@@ -17,21 +21,21 @@ class Calculador_Precio_Pedido():
 
         return cant_cien_kilos
 
-     def obtener_distancia(self,gps,pedido):
-        distancia = gps.calcular_distancia("origen",pedido.get_destino())
+    def obtener_distancia(self,gps):
+        distancia = gps.calcular_distancia("origen",self.get_destino())
         return distancia
      
-     def obtener_usa_camion(self,pedido):
-         usa_camion = pedido.usa_camion()
+    def obtener_usa_camion(self):
+         usa_camion = self.usa_camion()
          if(usa_camion):
              return 20000
          else:
              return 0
     
-     def obtener_can_kilos(self,contenedor):
+    def obtener_can_kilos(self,contenedor):
          return self.calcular_kilos(contenedor)
      
-     def obtener_con_completo(self,contenedor):
+    def obtener_con_completo(self,contenedor):
           c_completo = contenedor.esta_completo()
           if(c_completo):
                 return True
@@ -39,7 +43,7 @@ class Calculador_Precio_Pedido():
                 return False
 
 
-     def calcular_precio_pedido(self):
+    def calcular_precio_pedido(self):
         precio_contenedor = 0
         distancia = self.obtener_distancia()
         cant_cien_kilos = self.obtener_can_kilos()
