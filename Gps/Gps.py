@@ -7,3 +7,6 @@ class Gps():
 
     def obtener_distancia(self):
         return self.calcular_distancia()
+    
+    def tiempo_promedio_del_viaje(self):
+        return

@@ -4,7 +4,7 @@ from calculador_precio_pedido.Calculador_Precio_Pedido import Calculador_Precio_
 
 class TestCalculadorPrecioPedido(unittest.TestCase):
     def setUp(self):
-        self.calculador = Calculador_Precio_Pedido()
+        self.calculador = Calculador_Precio_Pedido(Mock())
 
     def test_calcular_kilos_exacto(self):
         resultado = self.calculador.calcular_kilos(300)
@@ -33,18 +33,18 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
     def test_calcular_precio_pedido_distancia_menor_cien_y_contenedor_completo_sin_camion(self):
         self.calculador.obtener_distancia = Mock(return_value=80)
         self.calculador.obtener_can_kilos = Mock(return_value=6)
-        self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
+        self.calculador.obtener_usa_camion = Mock(return_value=0)
         self.calculador.obtener_con_completo = Mock(return_value=True)
 
         resultado = self.calculador.calcular_precio_pedido()
 
-        self.assertEqual(resultado, 200000)
+        self.assertEqual(resultado, 200001)
 
 
     def test_calcular_precio_pedido_distancia_igual_cien_y_contenedor_completo_sin_camion(self):
         self.calculador.obtener_distancia = Mock(return_value=100)
         self.calculador.obtener_can_kilos = Mock(return_value=6)
-        self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
+        self.calculador.obtener_usa_camion = Mock(return_value=0)
         self.calculador.obtener_con_completo = Mock(return_value=True)
 
         resultado = self.calculador.calcular_precio_pedido()
@@ -55,7 +55,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
     def test_calcular_precio_pedido_distancia_mayor_cien_y_contenedor_completo_sin_camion(self):
         self.calculador.obtener_distancia = Mock(return_value=150)
         self.calculador.obtener_can_kilos = Mock(return_value=6)
-        self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
+        self.calculador.obtener_usa_camion = Mock(return_value=0)
         self.calculador.obtener_con_completo = Mock(return_value=True)
 
         resultado = self.calculador.calcular_precio_pedido()
@@ -68,7 +68,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
     def test_calcular_precio_pedido_distancia_menor_cien_y_contenedor_completo_con_camion(self):
         self.calculador.obtener_distancia = Mock(return_value=80)
         self.calculador.obtener_can_kilos = Mock(return_value=6)
-        self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
+        self.calculador.obtener_usa_camion = Mock(return_value=20000)
         self.calculador.obtener_con_completo = Mock(return_value=True)
 
         resultado = self.calculador.calcular_precio_pedido()
@@ -79,7 +79,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
     def test_calcular_precio_pedido_distancia_igual_cien_y_contenedor_completo_con_camion(self):
         self.calculador.obtener_distancia = Mock(return_value=100)
         self.calculador.obtener_can_kilos = Mock(return_value=6)
-        self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
+        self.calculador.obtener_usa_camion = Mock(return_value=20000)
         self.calculador.obtener_con_completo = Mock(return_value=True)
 
         resultado = self.calculador.calcular_precio_pedido()
@@ -90,7 +90,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
     def test_calcular_precio_pedido_distancia_mayor_cien_y_contenedor_completo_con_camion(self):
         self.calculador.obtener_distancia = Mock(return_value=150)
         self.calculador.obtener_can_kilos = Mock(return_value=6)
-        self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
+        self.calculador.obtener_usa_camion = Mock(return_value=20000)
         self.calculador.obtener_con_completo = Mock(return_value=True)
 
         resultado = self.calculador.calcular_precio_pedido()
@@ -104,7 +104,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
     def test_calcular_precio_pedido_distancia_menor_cien_y_contenedor_incompleto_sin_camion(self):
         self.calculador.obtener_distancia = Mock(return_value=80)
         self.calculador.obtener_can_kilos = Mock(return_value=6)
-        self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
+        self.calculador.obtener_usa_camion = Mock(return_value=0)
         self.calculador.obtener_con_completo = Mock(return_value=False)
 
         resultado = self.calculador.calcular_precio_pedido()

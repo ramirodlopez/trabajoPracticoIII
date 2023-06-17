@@ -1,7 +1,6 @@
 from typing import List
 from abc import ABC, abstractmethod
 
-from excepcion.restriccion_excepcion import RestriccionException
 
 class Contenedor(ABC):
     def __init__(self, id, especial) ->None:
@@ -101,6 +100,6 @@ class Contenedor(ABC):
     
     def set_ancho_exterior(self, ancho_exterior):
         self._ancho_exterior = ancho_exterior
-        return self._ancho_exterior
+     
 
 
