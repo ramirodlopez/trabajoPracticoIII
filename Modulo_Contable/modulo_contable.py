@@ -10,17 +10,6 @@ class modulo_Contable():
     def calcular_precio_barco_contenedor(self):
 
         
-        """
-       ##################### CLASE BARCO #####################
-
-         ganacia_barco = 0
-         obtener_ganancia_barco:
-            for contendor in self.get_contenedores():
-                    ganancia_barco += contendor.obtener_ganancia_contenedor()
-
-        
-                    
-        """
 
         """
         ##################### CLASE calcular_consumo_del_barco  #####################            
@@ -69,36 +58,89 @@ class modulo_Contable():
 
 
          """  
+        """
+       ##################### CLASE BARCO #####################
+
+         ganacia_barco = 0
+         obtener_ganancia_barco(Pedido):
+            for contendor in self.get_contenedores():
+                    ganancia_barco += contendor.obtener_ganancia_contenedor(Pedido)
+
+        
+                   
+        """
         
         """   
 
         ########################   CLASE CONTENEDOR  #####################
 
-         obtener_ganancia_contenedor():
+         obtener_ganancia_contenedor(Pedido):
          ganancia_contenedor
             for mercaderia in self.get_mercaderias():
-                ganancia_contenedor += mercaderia.obtener_ganancia_mercaderia()
+                ganancia_contenedor += mercaderia.obtener_ganancia_mercaderia(mercaderia.get_id, Pedido)
+                                   
         
 
 
 
-         """
+        """
 
         """   
           
         ########################   CLASE MERCADERIA   #####################
 
-         obtener_ganancia_mercaderia(pedido):
-            return  ganancia_mercaderia = pedido.get_precio_pedido()
-            
-            
+         obtener_ganancia_mercaderia(id_mercaderia, Pedido):    
+            return ganancia_mercaderia =  pedido.obtener_ganancia_pedido(id_mercaderia)
         
-                                                
+            
+       
+    
+         """    
+        """   
+          
+        ########################   CLASE PEDIDO   #####################
+
+         obtener_ganancia_pedido(id_mercaderia):
+            precio_del_pedido = None
+            for pedido in self.get_pedidos():
+                if pedido.mercaderia.get_id_mercaderia() == id_mercaderia:
+                    precio_del_pedido = pedido.get_precio_pedido()
 
 
 
          """    
         
+         #################### ##################### #################### ####################
+         ############ ##################### #################### ##################### ######
+
+
+        """
+       ##################### CLASE BARCO CON VELA #####################
+
+        consumo_de_combustible():
+            no gasta gasoil
+            
+        
+        tiempo_de_uso(gps):
+            hora_cambio_vela = datetime.datetime.now() 05:56:24                     V: 05:56:24
+                                                                                    M: 09:56:24
+                                                                                    V: 13:56:24
+
+                   
+        """
+        """
+       ##################### CLASE BARCO CON MOTOR #####################
+
+        consumo_de_combustible():
+            gasta gasoil
+            
+        
+        tiempo_de_uso(gps):
+            hora_cambio_motor = datetime.datetime.now() 09:56:24
+
+             
+
+        """
         
 
         pass
