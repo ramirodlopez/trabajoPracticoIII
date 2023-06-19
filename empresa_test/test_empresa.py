@@ -6,9 +6,7 @@ from Empresa.Empresa import Empresa
 class EmpresaTest(TestCase):
     def test_dado_el_id_contenedor_cuando_no_se_encuentra_en_contenedores_entonces_es_none(self):
         contenedor_a = Mock()
-        contenedor_a._id = 123
         contenedor_a.get_id.return_value = 123
-
         contenedor_b = Mock()
         contenedor_b.get_id.return_value = 456       
         contenedores = [contenedor_a, contenedor_b]
