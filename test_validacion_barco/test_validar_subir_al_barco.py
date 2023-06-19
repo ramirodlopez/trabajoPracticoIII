@@ -1,8 +1,8 @@
 from unittest import TestCase
 from Barco.Avanzado import Avanzado
 from Contenedor.BasicoHC import BasicoHC
-from Contenedor.flat_rack import FlatRack
-from excepcion.restriccion_excepcion import RestriccionException
+from Contenedor.Flat_Rack import FlatRack
+from Excepcion.restriccion_excepcion import RestriccionException
 from Validacion_Barco.Validar_Subir_Al_Barco import Validar_Subir_Al_Barco
 
 class Test_Validar_Subir_Al_Barco(TestCase):

@@ -1,5 +1,5 @@
 
-from excepcion.restriccion_excepcion import RestriccionException
+from Excepcion.restriccion_excepcion import RestriccionException
 
 
 class Validar_Subir_Al_Barco(Exception):

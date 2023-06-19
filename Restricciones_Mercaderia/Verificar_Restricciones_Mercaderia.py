@@ -1,5 +1,4 @@
-from Excepcion.Restriccion_Excepcion import RestriccionException
-
+from Excepcion.restriccion_excepcion import RestriccionException
 class VerificarRestricciones():
     def __init__(self) -> None:
         pass
