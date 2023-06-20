@@ -16,6 +16,7 @@ class Contenedor(ABC):
         self._alto_exterior = 0.0
         self._largo_exterior = 0.0
         self._ancho_exterior = 0.0
+        self._alto = 0.0
     
 
     def cargar_mercaderia(self, mercaderia, verificar_restriccion_mercaderia):
@@ -59,17 +60,39 @@ class Contenedor(ABC):
     def get_largo(self):
         return self._largo
     
+    def set_largo(self, largo):
+        self._largo = largo
+
+    def get_ancho(self):
+        return self._ancho
+    
+    def set_ancho(self, ancho):
+        self._ancho = ancho
+
+    def set_alto(self, alto):
+        self._alto = alto
+
+    def get_alto(self):
+        return self._alto
+    
+    def set_peso_max(self, peso_max):
+        self._peso_max = peso_max
+
     def get_peso_max(self):
         return self._peso_max
-    
+
+    def set_volumen(self, volumen):
+        self._volumen = volumen
+
+    def get_volumen(self):
+        return self._volumen
+ 
     def get_peso_ocupado(self):
         return self._peso_ocupado
 
     def set_peso_ocupado(self, valor):
         self._peso_ocupado = valor
 
-    def get_volumen(self):
-        return self._volumen
 
     def get_volumen_ocupado(self):
         return self._volumen_ocupado
