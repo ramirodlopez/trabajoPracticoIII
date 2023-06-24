@@ -41,6 +41,9 @@ class Calculador_Precio_Pedido():
                 return True
           else:
                 return False
+          
+    def obtener_precio_adicional(self,contenedor):
+         return contenedor.calcular_precio_adicional()
 
 
     def calcular_precio_pedido(self):
@@ -49,7 +52,9 @@ class Calculador_Precio_Pedido():
         cant_cien_kilos = self.obtener_can_kilos()
         precio_camion = self.obtener_usa_camion()
         c_completo = self.obtener_con_completo()
-        
+        precio_adicional = self.obtener_precio_adicional()
+
+
         if distancia < 100:
             if c_completo:
                 precio_contenedor = 200000
@@ -76,6 +81,6 @@ class Calculador_Precio_Pedido():
 
         
 
-        return precio_contenedor + precio_camion
+        return precio_contenedor + precio_camion + precio_adicional
 
   

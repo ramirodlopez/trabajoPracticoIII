@@ -67,7 +67,16 @@ class modulo_Contable():
                     ganancia_barco += contendor.obtener_ganancia_contenedor(Pedido)
 
         
-                   
+
+        ##################### CLASE BARCO #####################
+        def set.estrategia(estrategia):
+            self.estrategia = estrategia
+
+        
+        def do_something():
+            self.estrategia.hora_de_activacion()
+            #guardar en array de activaciones.
+
         """
         
         """   
@@ -116,18 +125,28 @@ class modulo_Contable():
 
         """
        ##################### CLASE BARCO CON VELA #####################
-
-        consumo_de_combustible():
-            no gasta gasoil
-            
         
-        tiempo_de_uso(gps):
-            hora_cambio_vela = datetime.datetime.now() 05:56:24                     V: 05:56:24
-                                                                                    M: 09:56:24
-                                                                                    V: 13:56:24
+            hora_de_activacion():
+                hora_cambio = datetime.datetime.now()    V: 05:56:24
+                return
 
-                   
-        """
+       ##################### CLASE BARCO CON MOTOR #####################
+        
+            hora_de_activacion():
+                hora_cambio = datetime.datetime.now()    V: 09:56:24
+                return
+
+            tiempo_de_uso(gps):
+                hora_cambio_vela = datetime.datetime.now() 05:56:24                     
+                hora_cambio_vela = datetime.datetime.now() 13:56:24                     V: 05:56:24
+                                                                                        M: 09:56:24
+                                                                                        V: 13:56:24
+
+                                                                                        VELATOTAL: 8HS -> V1 + V2
+                                                                                        MOTORTOTAL: 8HS
+
+                                                
+            """
         """
        ##################### CLASE BARCO CON MOTOR #####################
 
