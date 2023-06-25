@@ -1,6 +1,8 @@
 from unittest import TestCase
 from unittest.mock import Mock
 from Contenedor.Basico import Basico
+from Contenedor.Builder.Basico_Builder import BuilderBasico
+from Contenedor.Director import Director
 from Mercaderia.Mercaderia import Mercaderia
 
 class ContainerTest(TestCase):
@@ -24,7 +26,10 @@ class ContainerTest(TestCase):
         verificar_restricciones_mercaderia = Mock()
         verificar_restricciones_mercaderia.verificar_restricciones.return_value = None 
 
-        contenedor = Basico(132, False)
+        builder_basico = BuilderBasico()
+        director = Director()
+        director.builder = builder_basico
+        contenedor = director.crear_contenedor_basico(132, False)
         contenedor.verificar_completo = Mock()(return_value = None)
         contenedor.cargar_mercaderia(mercaderia_mock, verificar_restricciones_mercaderia)    
 
@@ -38,14 +43,20 @@ class ContainerTest(TestCase):
         
     
     def test_cuando_peso_ocupado_es_igual_a_peso_max_entonces_contenedor_esta_completo(self):
-        contenedor = Basico(123, False)
+        builder_basico = BuilderBasico()
+        director = Director()
+        director.builder = builder_basico
+        contenedor = director.crear_contenedor_basico(132, False)
         contenedor.set_peso_ocupado(24000)
         peso_ocupado = contenedor.get_peso_ocupado()
         peso_maximo = contenedor.get_peso_max()
         self.assertEqual(peso_ocupado, peso_maximo) 
 
     def test_cuando_volumen_ocupado_es_igual_a_volumen_max_entonces_contenedor_esta_completo(self):
-        contenedor = Basico(123, False)
+        builder_basico = BuilderBasico()
+        director = Director()
+        director.builder = builder_basico
+        contenedor = director.crear_contenedor_basico(132, False)
         contenedor.set_volumen_ocupado(32.42999999999999)
         volumen_ocupado = contenedor.get_volumen_ocupado()
         volumen_maximo = contenedor.get_volumen()
@@ -53,7 +64,10 @@ class ContainerTest(TestCase):
 
     
     def test_cuando_peso_o_volumen_ocupado_es_igual_a_peso_o_volumen_max_entonces_contenedor_esta_completo(self):
-        contenedor = Basico(123, False)
+        builder_basico = BuilderBasico()
+        director = Director()
+        director.builder = builder_basico
+        contenedor = director.crear_contenedor_basico(132, False)
         contenedor.set_volumen_ocupado(32.42999999999999)
         contenedor.set_peso_ocupado(24000)
         contenedor.verificar_completo()
@@ -61,7 +75,7 @@ class ContainerTest(TestCase):
 
     def  test_cuando_peso_o_volumen_ocupado_es_distinto_a_peso_o_volumen_max_entonces_contenedor_no_esta_completo(self):
         contenedor = Basico(123, False)
-        contenedor.set_volumen_ocupado(32)
+        contenedor.set_volumen_ocupado(377)
         contenedor.set_peso_ocupado(240)
         contenedor.verificar_completo()
         self.assertFalse(contenedor.esta_completo())
@@ -86,4 +100,6 @@ class ContainerTest(TestCase):
         contenedor._mercaderias.append(mercaderia_2)
         resultado = contenedor.esta_completo_con_unica_carga()
         assert not resultado
+    
+ 
     

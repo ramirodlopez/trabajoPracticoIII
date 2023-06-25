@@ -6,7 +6,7 @@ class Contenedor(ABC):
     def __init__(self, id, especial) ->None:
         self._id = id
         self._especial = especial
-        self._largo = None
+        self._largo = 0.0
         self._peso_max = 0.0
         self._peso_ocupado = 0.0 
         self._volumen = 0.0
@@ -17,6 +17,8 @@ class Contenedor(ABC):
         self._largo_exterior = 0.0
         self._ancho_exterior = 0.0
         self._alto = 0.0
+        self._valor_adicional = 0.0
+        
     
 
     def cargar_mercaderia(self, mercaderia, verificar_restriccion_mercaderia):
@@ -44,6 +46,14 @@ class Contenedor(ABC):
     @abstractmethod
     def entra_alto(self, alto_mercaderia):
         pass
+
+    @abstractmethod
+    def valor_adicional(self):
+        pass
+    
+    #valor adicional
+    def set_valor_adicional(self, valor_adicional):
+        self._valor_adicional = valor_adicional
 
     def get_id(self):
         return self._id
@@ -123,6 +133,6 @@ class Contenedor(ABC):
     
     def set_ancho_exterior(self, ancho_exterior):
         self._ancho_exterior = ancho_exterior
-     
+    
 
-
+ 

@@ -1,17 +1,14 @@
+from abc import ABC
 from typing_extensions import override
-from Abstract_Builder import Builder
-from Contenedor.Contenedor import Contenedor
+
+from Contenedor.Builder.Builder import Builder
 
 
-class BuilderConcreto(Builder):
+class BuilderComun(Builder, ABC):
     def __init__(self) -> None:
         pass
     
     @override
-    def reset(self, id, es_especial):
-        self.contenedor = Contenedor(id, es_especial)
-        return self
-    
     def asignar_largo(self, largo):
         self.contenedor.set_largo(largo)
         return self
@@ -21,6 +18,7 @@ class BuilderConcreto(Builder):
         self.contenedor.set_ancho(ancho)
         return self
 
+    @override
     def asignar_alto(self, alto):
         self.contenedor.set_alto(alto)
         return self
@@ -49,8 +47,14 @@ class BuilderConcreto(Builder):
     def asignar_ancho_exterior(self, ancho_exterior):
         self.contenedor.set_ancho_exterior(ancho_exterior)
         return self
-
+    
     @override
-    def get_contenedor(self)-> Contenedor:
+    def asignar_valor_adicional(self, valor_adicional):
+        self.contenedor.set_valor_adicional(valor_adicional)
+        return self
+    
+    @override
+    def get_contenedor(self):
         return self.contenedor
+
     

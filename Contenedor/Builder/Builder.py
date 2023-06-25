@@ -41,4 +41,9 @@ class Builder(ABC):
     @abstractmethod
     def asignar_ancho_exterior(self, ancho_exterior):
         pass
+    
+    @abstractmethod
+    def asignar_valor_adicional(self, valor_adicional):
+        pass
+
 
