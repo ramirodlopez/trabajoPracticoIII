@@ -22,7 +22,7 @@ class Contenedor(ABC):
     
 
     def cargar_mercaderia(self, mercaderia, verificar_restriccion_mercaderia):
-        verificar_restriccion_mercaderia.verificar_restricciones(self)
+        verificar_restriccion_mercaderia.verificar_restricciones(self, mercaderia)
         self._mercaderias.append(mercaderia)
         self._peso_ocupado += mercaderia.get_peso()
         self._volumen_ocupado += mercaderia.devolver_volumen()
@@ -49,6 +49,10 @@ class Contenedor(ABC):
 
     @abstractmethod
     def valor_adicional(self):
+        pass
+
+    @abstractmethod
+    def puede_contener_tipo_mercaderia(self, tipo_mercaderia):
         pass
     
     #valor adicional

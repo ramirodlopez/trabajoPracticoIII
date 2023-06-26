@@ -1,11 +1,21 @@
+from Mercaderia.Tipo_Mercaderia import TipoMercaderia
+
+
 class Mercaderia():
-    def __init__(self, esEspecial, ancho, alto, largo, peso, id):
+    def __init__(self, esEspecial, ancho, alto, largo, peso, id, tipo_mercaderia:TipoMercaderia):
         self.es__especial = esEspecial
         self.__alto = alto
         self.__largo = largo
         self.__ancho = ancho
         self.__peso = peso
         self.__id = id
+        self.__tipo_mercaderia = tipo_mercaderia
+       
+    def set_tipo_mercaderia(self, tipo_mercaderia):
+        self.__tipo_mercaderia = tipo_mercaderia
+    
+    def get_tipo_mercaderia(self):
+        return self.__tipo_mercaderia
 
     def get_es_especial(self):
         return self.es__especial

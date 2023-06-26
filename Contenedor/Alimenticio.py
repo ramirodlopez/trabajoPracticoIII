@@ -1,5 +1,6 @@
 from typing_extensions import override
 from Contenedor.Contenedor import Contenedor
+from trabajoPracticoIII.Mercaderia.Tipo_Mercaderia import TipoMercaderia
 
 class Alimenticio(Contenedor):
     def __init__(self, id, especial) -> None:
@@ -17,3 +18,7 @@ class Alimenticio(Contenedor):
     @override
     def valor_adicional(self):
         return 0.0
+    
+    @override
+    def puede_contener_tipo_mercaderia(self, tipo_mercaderia):
+        return TipoMercaderia.ALIMENTICIO == tipo_mercaderia

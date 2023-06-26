@@ -16,3 +16,7 @@ class BasicoHC(Basico):
     @override
     def valor_adicional(self):
         return 0.0
+    
+    @override
+    def puede_contener_tipo_mercaderia(self, tipo_mercaderia):
+        return False

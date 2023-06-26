@@ -17,3 +17,7 @@ class OpenTop(Contenedor):
     @override
     def valor_adicional(self):
         return self._valor_adicional
+    
+    @override
+    def puede_contener_tipo_mercaderia(self, tipo_mercaderia):
+        return False
