@@ -14,9 +14,6 @@ class OpenTop(Contenedor):
     def entra_alto(self, alto_mercaderia):
         return True
     
-    @override
-    def valor_adicional(self):
-        return self._valor_adicional
     
     @override
     def puede_contener_tipo_mercaderia(self, tipo_mercaderia):

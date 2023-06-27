@@ -1,9 +1,11 @@
 from unittest import TestCase
 from unittest.mock import Mock
 from Contenedor.Basico import Basico
+from Contenedor.Builder.Alimenticio_Builder import BuilderAlimenticio
 from Contenedor.Builder.Basico_Builder import BuilderBasico
 from Contenedor.Director import Director
 from Mercaderia.Mercaderia import Mercaderia
+from Mercaderia.Tipo_Mercaderia import TipoMercaderia
 
 class ContainerTest(TestCase):
     def test_dado_mercaderia_pasa_restricciones_cuando_cargo_mercaderia_entonces_verifico_misma_mercaderia_contenedor(self):
@@ -84,7 +86,7 @@ class ContainerTest(TestCase):
         contenedor = Basico(123, False)
         contenedor._completo = True
         contenedor._mercaderias = []
-        mercaderia = Mercaderia(False, 1, 1, 15, 1, 132)
+        mercaderia = Mercaderia(1, 1, 15, 1, 132, "mesas")
         contenedor._mercaderias.append(mercaderia)
         resultado = contenedor.esta_completo_con_unica_carga()
         assert resultado
@@ -94,12 +96,28 @@ class ContainerTest(TestCase):
         contenedor = Basico(123, False)
         contenedor._completo = True
         contenedor._mercaderias = []
-        mercaderia_1 = Mercaderia(False, 2, 2.3,2 ,1, 235)
+        mercaderia_1 = Mercaderia(2, 2.3,2 ,1, 235, "bebida")
         contenedor._mercaderias.append(mercaderia_1)
-        mercaderia_2 = Mercaderia(False, 1, 1, 14,1, 454)
+        mercaderia_2 = Mercaderia(1, 1, 14,1, 454, "bebida")
         contenedor._mercaderias.append(mercaderia_2)
         resultado = contenedor.esta_completo_con_unica_carga()
         assert not resultado
     
  
-    
+    def test_dado_un_contenedor_alimenticio_cuando_tipo_mercaderia_es_alimenticio_entonces_puede_contenerlo(self):
+        builder_alimenticio = BuilderAlimenticio()
+        director = Director()
+        director.builder = builder_alimenticio
+        contenedor = director.crear_contenedor_alimenticio(444, False)
+        mercaderia = Mercaderia(2, 2.3,2 ,1, 235, "alimenticia")
+        resultado = contenedor.puede_contener_tipo_mercaderia(mercaderia.get_tipo_mercaderia())
+        assert resultado
+
+    def test_dado_un_contenedor_alimenticio_cuando_tipo_mercaderia_no_es_alimenticio_entonces_no_puede_contenerlo(self):
+        builder_alimenticio = BuilderAlimenticio()
+        director = Director()
+        director.builder = builder_alimenticio
+        contenedor = director.crear_contenedor_alimenticio(444, False)
+        mercaderia = Mercaderia(2, 2.3,2 ,1, 235, "quimico")
+        resultado = contenedor.puede_contener_tipo_mercaderia(mercaderia.get_tipo_mercaderia())
+        assert not resultado

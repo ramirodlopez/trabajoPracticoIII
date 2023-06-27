@@ -1,5 +1,5 @@
 from Excepcion.restriccion_excepcion import RestriccionException
-from trabajoPracticoIII.Mercaderia.Tipo_Mercaderia import TipoMercaderia
+from Mercaderia.Tipo_Mercaderia import TipoMercaderia
 
 class VerificarRestricciones():
     def __init__(self) -> None:
@@ -16,8 +16,8 @@ class VerificarRestricciones():
         self.verificar_alimentos_con_quimicos(contenedor, mercaderia)
 
     def verificar_especial(self, contenedor, mercaderia):
-        if (mercaderia.get_es_especial() and not contenedor.is_especial()):
-            raise RestriccionException("No se puede cargar una mercadería especial en este contenedor.")
+        if (mercaderia.get_tipo_mercaderia() == TipoMercaderia.QUIMICO.value  and not contenedor.is_especial()):
+            raise RestriccionException("No se puede cargar una mercadería química en este contenedor.")
     
     def verificar_alto(self, contenedor, mercaderia):
         if (not contenedor.entra_alto(mercaderia.get_alto())):
@@ -38,14 +38,19 @@ class VerificarRestricciones():
     def verificar_peso(self, contenedor, mercaderia):
         if (mercaderia.get_peso() > contenedor.get_peso_max() - contenedor.get_peso_ocupado()): 
             raise RestriccionException("El peso de la mercadería es mayor que la del contenedor.")
-        
+
     def verificar_tipo_mercaderia(self, contenedor, mercaderia):
         if (not contenedor.puede_contener_tipo_mercaderia(mercaderia.get_tipo_mercaderia())):
             raise RestriccionException("Las mercaderías alimenticias deben viajar en containers de tipo alimenticio.")
 
-    def verificar_alimentos_con_quimicos(contenedor, mercaderia):
-        if (TipoMercaderia.ALIMENTICIO == mercaderia.get_tipo_mercaderia()):
+
+    def verificar_alimentos_con_quimicos(self,contenedor, mercaderia):
+        self.verificar_mercaderias_en_mismo_contenedor(contenedor, mercaderia, TipoMercaderia.ALIMENTICIO, TipoMercaderia.QUIMICO)
+        self.verificar_mercaderias_en_mismo_contenedor(contenedor, mercaderia, TipoMercaderia.QUIMICO, TipoMercaderia.ALIMENTICIO)
+                
+    def verificar_mercaderias_en_mismo_contenedor(self, contenedor, mercaderia, tipo_mercaderia_base, tipo_mercaderia_buscada):
+        if (tipo_mercaderia_base.value == mercaderia.get_tipo_mercaderia()):
             mercaderias_contenidas = contenedor.get_mercaderias()
             for mercaderia_contenida in mercaderias_contenidas:
-                if (TipoMercaderia.QUIMICO == mercaderia_contenida.get_tipo_mercaderia()):
+                if (tipo_mercaderia_buscada.value == mercaderia_contenida.get_tipo_mercaderia()):
                     raise RestriccionException("Las mercaderías alimenticias no pueden viajar junto a las del tipo químicas.")

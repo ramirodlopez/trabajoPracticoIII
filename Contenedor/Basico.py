@@ -7,15 +7,11 @@ class Basico(Contenedor):
 
     @override
     def entra_ancho(self, ancho_mercaderia):
-        return self._ancho >= ancho_mercaderia
+        return self.get_ancho() >= ancho_mercaderia
     
     @override
     def entra_alto(self, alto_mercaderia):
-        return self._alto >= alto_mercaderia
-    
-    @override
-    def valor_adicional(self):
-        return 0.0
+        return self.get_alto() >= alto_mercaderia
     
     @override
     def puede_contener_tipo_mercaderia(self, tipo_mercaderia):

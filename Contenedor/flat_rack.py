@@ -13,9 +13,6 @@ class FlatRack(Contenedor):
     def entra_ancho(self, ancho_mercaderia):
         return True
     
-    @override
-    def valor_adicional(self):
-        return 0.0
     
     @override
     def puede_contener_tipo_mercaderia(self, tipo_mercaderia):

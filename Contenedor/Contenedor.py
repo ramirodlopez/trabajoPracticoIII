@@ -1,12 +1,12 @@
 from typing import List
 from abc import ABC, abstractmethod
 
-
 class Contenedor(ABC):
     def __init__(self, id, especial) ->None:
         self._id = id
         self._especial = especial
         self._largo = 0.0
+        self._ancho = 0.0
         self._peso_max = 0.0
         self._peso_ocupado = 0.0 
         self._volumen = 0.0
@@ -47,15 +47,13 @@ class Contenedor(ABC):
     def entra_alto(self, alto_mercaderia):
         pass
 
-    @abstractmethod
     def valor_adicional(self):
-        pass
+        return self._valor_adicional
 
     @abstractmethod
     def puede_contener_tipo_mercaderia(self, tipo_mercaderia):
         pass
-    
-    #valor adicional
+
     def set_valor_adicional(self, valor_adicional):
         self._valor_adicional = valor_adicional
 
@@ -139,4 +137,9 @@ class Contenedor(ABC):
         self._ancho_exterior = ancho_exterior
     
 
- 
+    def obtener_ganancia_contenedor(self, pedido):
+        ganancia_contenedor = 0.0
+        for mercaderia in self.get_mercaderias():
+            ganancia_contenedor += mercaderia.obtener_ganancia_mercaderia(mercaderia.get_id(), pedido)
+        return ganancia_contenedor
+                                   

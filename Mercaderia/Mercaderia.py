@@ -1,9 +1,6 @@
-from Mercaderia.Tipo_Mercaderia import TipoMercaderia
-
 
 class Mercaderia():
-    def __init__(self, esEspecial, ancho, alto, largo, peso, id, tipo_mercaderia:TipoMercaderia):
-        self.es__especial = esEspecial
+    def __init__(self, ancho, alto, largo, peso, id, tipo_mercaderia):
         self.__alto = alto
         self.__largo = largo
         self.__ancho = ancho
@@ -16,12 +13,6 @@ class Mercaderia():
     
     def get_tipo_mercaderia(self):
         return self.__tipo_mercaderia
-
-    def get_es_especial(self):
-        return self.es__especial
-    
-    def set_es_especial(self, valor):
-        self.es__especial = valor
 
     def get_ancho(self):
         return self.__ancho
@@ -65,3 +56,8 @@ class Mercaderia():
 
     def __hash__(self):
         return hash(self.__id)
+    
+    def obtener_ganancia_mercaderia(id_mercaderia, pedido):  
+        ganancia_mercaderia = 0.0  
+        ganancia_mercaderia =  pedido.obtener_ganancia_pedido(id_mercaderia)
+        return ganancia_mercaderia
