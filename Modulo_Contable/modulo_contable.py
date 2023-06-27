@@ -1,17 +1,32 @@
-
-
 class modulo_Contable():
     
     def __init__(self, empresa):
         self.empresa = empresa
         
 
-
-    def calcular_precio_barco_contenedor(self):
-
+    def obtener_ganancia_barco_bruta(self, id):
+        ganancia_barco = 0
+        try:
+            indice = self.empresa.get_barcos().index(id)
+            ganancia_barco = self.empresa.get_barcos()[indice].obtener_ganancia_barco()
+                
+        except ValueError:
+            print("No existe ese id de barco")
+            
+        return ganancia_barco
+         
         
 
-        """
+
+    def calcular_gasto_combustible_barco(self, barco):
+     return barco.get_horas_motor() * 6
+    
+
+    def calcular_ganacia_del_barco(self):
+        return self.obtener_ganancia_barco_bruta() - self.calcular_gasto_combustible_barco()
+    
+
+    """
         ##################### CLASE calcular_consumo_del_barco  #####################            
 
             calcular_consumo_combustible_del_barco():
@@ -26,9 +41,9 @@ class modulo_Contable():
 
                 return combustible_restante
 
-        """
+  
 
-        """   
+    
                  
         ########################   CLASE MODULO_CONTABLE   #####################
 
@@ -57,8 +72,7 @@ class modulo_Contable():
 
 
 
-         """  
-        """
+    
        ##################### CLASE BARCO #####################
 
          ganacia_barco = 0
@@ -77,9 +91,7 @@ class modulo_Contable():
             self.estrategia.hora_de_activacion()
             #guardar en array de activaciones.
 
-        """
-        
-        """   
+         
 
         ########################   CLASE CONTENEDOR  #####################
 
@@ -92,9 +104,7 @@ class modulo_Contable():
 
 
 
-        """
-
-        """   
+          
           
         ########################   CLASE MERCADERIA   #####################
 
@@ -104,8 +114,7 @@ class modulo_Contable():
             
        
     
-         """    
-        """   
+           
           
         ########################   CLASE PEDIDO   #####################
 
@@ -117,13 +126,13 @@ class modulo_Contable():
 
 
 
-         """    
+
         
          #################### ##################### #################### ####################
          ############ ##################### #################### ##################### ######
 
 
-        """
+
        ##################### CLASE BARCO CON VELA #####################
         
             hora_de_activacion():
@@ -145,9 +154,7 @@ class modulo_Contable():
                                                                                         VELATOTAL: 8HS -> V1 + V2
                                                                                         MOTORTOTAL: 8HS
 
-                                                
-            """
-        """
+       
        ##################### CLASE BARCO CON MOTOR #####################
 
         consumo_de_combustible():
@@ -159,17 +166,4 @@ class modulo_Contable():
 
              
 
-        """
-        
-
-        pass
-
-
-    def calcular_gasto_combustible_barco(self, number):
-       
-        pass
-    
-
-    def calcular_ganacia_del_barco(self, number):
-       
-        pass
+    """
