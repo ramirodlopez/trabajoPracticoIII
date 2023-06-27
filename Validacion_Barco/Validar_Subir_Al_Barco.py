@@ -1,62 +1,44 @@
+from abc import ABC, abstractmethod
 
-from Excepcion.restriccion_excepcion import RestriccionException
+from excepcion.restriccion_excepcion import RestriccionException
 
 
-class Validar_Subir_Al_Barco(Exception):
+class Validar_Subir_Al_Barco(ABC):
     def es_basico(self, contenedor):
-        basico = False
-        if (contenedor.get_ancho_exterior() == 2.45 and 
-            contenedor.get_alto_exterior() == 2.6 and 
-            contenedor.get_largo_exterior() == 6.1):
-            basico = True
-        return basico
+        return (
+            contenedor.get_ancho_exterior() == 2.45 and
+            contenedor.get_alto_exterior() == 2.6 and
+            contenedor.get_largo_exterior() == 6.1
+        )
+
     
     def es_avanzado(self, contenedor):
-        avanzado = False
-        if (contenedor.get_ancho_exterior() > 2.45 and 
-            contenedor.get_alto_exterior() > 2.6 and 
-            contenedor.get_largo_exterior() > 6.1):
-            avanzado = True
-        return avanzado
+        return (
+            contenedor.get_ancho_exterior() > 2.45 and
+            contenedor.get_alto_exterior() > 2.6 and
+            contenedor.get_largo_exterior() > 6.1
+        )
     
     def validar_cant_container(self, barco):
-        cant_valida = False
-        if(barco.contar_contenedores() <= barco._cant_max_cont):
-            cant_valida = True
-        return cant_valida
+        return barco.contar_contenedores() <= barco._cant_max_cont
     
-    def validar_peso(self, barco):
-        peso_valido = False
-        if(barco.get_peso_total() <= barco.get_peso_max_sopor()):
-            peso_valido = True
-        return peso_valido
+    def validar_peso(self, barco, contenedor):
+        return barco.get_peso_total() + contenedor.get_peso_ocupado() <= barco.get_peso_max_sopor()
 
     def verificar_restricciones_barco_generales(self, barco, contenedor):
+        esValido = True
+
         if not self.validar_cant_container(barco):
-            barco._peso_total-= contenedor.get_peso_ocupado()
+            esValido = False
             raise RestriccionException("Un barco no puede cargar más containers del máximo definido")
             
-        if not self.validar_peso(barco):
-            barco._peso_total-= contenedor.get_peso_ocupado()
+        if not self.validar_peso(barco, contenedor):
+            esValido = False
             raise RestriccionException("Un barco no puede cargar más peso del máximo definido")
+        
+        return esValido
     
 
-    def verificar_restricciones_barco_basico(self, barco, contenedor):
-        self.verificar_restricciones_barco_generales(barco, contenedor)
-
-        if not self.es_basico(contenedor):
-            barco._peso_total-= contenedor.get_peso_ocupado()
-            raise RestriccionException("Un barco no puede cargar un container para el cual no fue diseñado.")
-        
-        if contenedor.is_especial():
-            barco._peso_total-= contenedor.get_peso_ocupado()
-            raise RestriccionException("Un container con material especial (explosivos, desechos químicos o radioactivos) sólo puede ser \
-                            transportado por un barco diseñado para tal fin.")
-        
-
-    def verificar_restricciones_barco_avanzado(self, barco, contenedor):
-        self.verificar_restricciones_barco_generales(barco, contenedor)
-        
-        if not self.es_avanzado(contenedor):
-            barco._peso_total-= contenedor.get_peso_ocupado()
-            raise RestriccionException("Un barco no puede cargar un container para el cual no fue diseñado.")
+    @abstractmethod
+    def verificar_restricciones_barco_segun_su_tipo(self, barco, contenedor):
+        pass
