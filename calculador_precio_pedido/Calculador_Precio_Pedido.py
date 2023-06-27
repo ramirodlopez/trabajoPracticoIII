@@ -43,7 +43,7 @@ class Calculador_Precio_Pedido():
                 return False
           
     def obtener_precio_adicional(self,contenedor):
-         return contenedor.calcular_precio_adicional()
+         return contenedor.valor_adicional()
 
 
     def calcular_precio_pedido(self):

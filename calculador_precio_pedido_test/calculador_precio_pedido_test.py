@@ -19,10 +19,11 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=500) #precio adicional open top.
 
         resultado = self.calculador.calcular_precio_pedido()
 
-        self.assertEqual(resultado, 6000)
+        self.assertEqual(resultado, 6500)
 
     #-----------------------------------------------------------------------------------------------#
     #-----------------------------------------------------------------------------------------------#
@@ -35,10 +36,11 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0)
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0) 
 
         resultado = self.calculador.calcular_precio_pedido()
 
-        self.assertEqual(resultado, 200001)
+        self.assertEqual(resultado, 200000)
 
 
     def test_calcular_precio_pedido_distancia_igual_cien_y_contenedor_completo_sin_camion(self):
@@ -46,6 +48,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0)
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -57,6 +60,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0)
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -70,6 +74,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000)
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -81,6 +86,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000)
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -92,6 +98,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000)
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -106,7 +113,8 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0)
         self.calculador.obtener_con_completo = Mock(return_value=False)
-
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
+        
         resultado = self.calculador.calcular_precio_pedido()
 
         self.assertEqual(resultado, 6000)
@@ -117,6 +125,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -128,6 +137,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -143,6 +153,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -154,6 +165,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -165,6 +177,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -188,6 +201,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -199,6 +213,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -210,6 +225,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -223,6 +239,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -234,6 +251,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -245,6 +263,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -259,6 +278,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -270,6 +290,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -281,6 +302,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -296,6 +318,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -307,6 +330,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -318,6 +342,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -341,6 +366,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -352,6 +378,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -363,6 +390,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -376,6 +404,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -387,6 +416,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -398,6 +428,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=True)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -412,6 +443,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -423,6 +455,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -434,6 +467,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=0) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -449,6 +483,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -460,6 +495,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
@@ -471,6 +507,7 @@ class TestCalculadorPrecioPedido(unittest.TestCase):
         self.calculador.obtener_can_kilos = Mock(return_value=6)
         self.calculador.obtener_usa_camion = Mock(return_value=20000) #valor $20000 si usa $0 si no.
         self.calculador.obtener_con_completo = Mock(return_value=False)
+        self.calculador.obtener_precio_adicional = Mock(return_value=0)
 
         resultado = self.calculador.calcular_precio_pedido()
 
