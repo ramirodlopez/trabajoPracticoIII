@@ -48,3 +48,12 @@ class Pedido:
             precio = Camion.get_precio()
        
         return precio
+
+
+    def obtener_ganancia_pedido(self, id_mercaderia):
+            precio_del_pedido = None
+            for pedido in self.get_pedidos():
+                if pedido.mercaderia.get_id_mercaderia() == id_mercaderia:
+                    precio_del_pedido = pedido.get_precio_pedido()
+
+            return precio_del_pedido
