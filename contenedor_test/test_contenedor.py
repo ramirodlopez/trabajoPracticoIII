@@ -122,7 +122,7 @@ class ContainerTest(TestCase):
         resultado = contenedor.puede_contener_tipo_mercaderia(mercaderia.get_tipo_mercaderia())
         assert not resultado
 
-    #
+    
     def test_dado_contenedor_que_contiene_mercaderias_cuando_llega_al_puerto_entonces_se_vacia_el_contenedor(self):
         verificar_restricciones_mercaderia = Mock()
         verificar_restricciones_mercaderia.verificar_restricciones.return_value = None 
@@ -139,5 +139,17 @@ class ContainerTest(TestCase):
         self.assertEqual(len(contenedor.get_mercaderias()), 0)
         self.assertEqual(contenedor.get_peso_ocupado(), 0)
         self.assertEqual(contenedor.get_volumen_ocupado(), 0)
-
     
+    def test_dado_un_contenedor_que_contiene_mercaderia_entonces_se_retorna_la_ganancia(self):
+        pedido = Mock()
+        mercaderia = Mock()
+        mercaderia.obtener_ganancia_mercaderia.return_value = 50
+        builder_alimenticio = BuilderAlimenticio()
+        director = Director()
+        director.builder = builder_alimenticio
+        contenedor = director.crear_contenedor_alimenticio(444, False)
+        contenedor.get_mercaderias = Mock(return_value=[mercaderia])
+    
+        ganancia_pedido = mercaderia.obtener_ganancia_mercaderia.return_value
+        ganancia = contenedor.obtener_ganancia_contenedor(pedido)
+        self.assertEqual(ganancia, ganancia_pedido)
