@@ -27,7 +27,12 @@ class Contenedor(ABC):
         self._peso_ocupado += mercaderia.get_peso()
         self._volumen_ocupado += mercaderia.devolver_volumen()
         self.verificar_completo()
-    
+
+    def vaciar_mercaderia_contenedor(self):
+        self._mercaderias.clear()
+        self._peso_ocupado = 0
+        self._volumen_ocupado = 0  
+  
     def verificar_completo(self):
         if (self._peso_ocupado == self._peso_max):
             self._completo = True
@@ -38,6 +43,12 @@ class Contenedor(ABC):
 
     def esta_completo_con_unica_carga(self) -> bool:
         return self._completo and len(self._mercaderias) == 1
+    
+    def obtener_ganancia_contenedor(self, pedido):
+        ganancia_contenedor = 0.0
+        for mercaderia in self.get_mercaderias():
+            ganancia_contenedor += mercaderia.obtener_ganancia_mercaderia(mercaderia.get_id(), pedido)
+        return ganancia_contenedor
 
     @abstractmethod
     def entra_ancho(self, ancho_mercaderia):
@@ -137,9 +148,5 @@ class Contenedor(ABC):
         self._ancho_exterior = ancho_exterior
     
 
-    def obtener_ganancia_contenedor(self, pedido):
-        ganancia_contenedor = 0.0
-        for mercaderia in self.get_mercaderias():
-            ganancia_contenedor += mercaderia.obtener_ganancia_mercaderia(mercaderia.get_id(), pedido)
-        return ganancia_contenedor
+
                                    

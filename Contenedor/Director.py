@@ -15,7 +15,7 @@ class Director():
     
     def crear_contenedor_basico(self, id, es_especial):
         return self._builder\
-            .reset(id, es_especial)\
+            .builder(id, es_especial)\
             .asignar_largo(6)\
             .asignar_ancho(2.35)\
             .asignar_alto(2.3)\
@@ -28,7 +28,7 @@ class Director():
 
     def crear_contenedor_basico_hc(self, id, es_especial):
         return self._builder\
-            .reset(id, es_especial)\
+            .builder(id, es_especial)\
             .asignar_largo(12)\
             .asignar_ancho(2.35)\
             .asignar_alto(2.3)\
@@ -42,7 +42,7 @@ class Director():
 
     def crear_contenedor_flat_rack(self, id, es_especial):
         return self._builder\
-            .reset(id, es_especial)\
+            .builder(id, es_especial)\
             .asignar_largo(6)\
             .asignar_ancho(None)\
             .asignar_alto(2.3)\
@@ -55,7 +55,7 @@ class Director():
 
     def crear_contenedor_alimenticio(self, id, es_especial):
         return self._builder\
-            .reset(id, es_especial)\
+            .builder(id, es_especial)\
             .asignar_largo(6)\
             .asignar_ancho(2.35)\
             .asignar_alto(2.3)\
@@ -68,7 +68,7 @@ class Director():
 
     def crear_contenedor_open_top(self, id, es_especial):
         return self._builder\
-            .reset(id, es_especial)\
+            .builder(id, es_especial)\
             .asignar_largo(12)\
             .asignar_ancho(2.35)\
             .asignar_alto(None)\

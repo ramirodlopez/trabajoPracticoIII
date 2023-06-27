@@ -5,7 +5,6 @@ from Contenedor.Builder.Alimenticio_Builder import BuilderAlimenticio
 from Contenedor.Builder.Basico_Builder import BuilderBasico
 from Contenedor.Director import Director
 from Mercaderia.Mercaderia import Mercaderia
-from Mercaderia.Tipo_Mercaderia import TipoMercaderia
 
 class ContainerTest(TestCase):
     def test_dado_mercaderia_pasa_restricciones_cuando_cargo_mercaderia_entonces_verifico_misma_mercaderia_contenedor(self):
@@ -13,9 +12,10 @@ class ContainerTest(TestCase):
         ancho = 1
         alto = 1.2
         largo = 2
+        tipo_mercaderia = None
         
         mercaderia_mock = Mock()
-        mercaderia_mock.__esEspecial = False
+        mercaderia_mock.__self.__tipo_mercaderia = tipo_mercaderia
         mercaderia_mock.__ancho = ancho
         mercaderia_mock.__alto = alto
         mercaderia_mock.__largo = largo
@@ -86,7 +86,7 @@ class ContainerTest(TestCase):
         contenedor = Basico(123, False)
         contenedor._completo = True
         contenedor._mercaderias = []
-        mercaderia = Mercaderia(1, 1, 15, 1, 132, "mesas")
+        mercaderia = Mercaderia(1, 1, 15, 1, 132, None)
         contenedor._mercaderias.append(mercaderia)
         resultado = contenedor.esta_completo_con_unica_carga()
         assert resultado
@@ -118,6 +118,26 @@ class ContainerTest(TestCase):
         director = Director()
         director.builder = builder_alimenticio
         contenedor = director.crear_contenedor_alimenticio(444, False)
-        mercaderia = Mercaderia(2, 2.3,2 ,1, 235, "quimico")
+        mercaderia = Mercaderia(2, 2.3,2 ,1, 235, "maquinaria")
         resultado = contenedor.puede_contener_tipo_mercaderia(mercaderia.get_tipo_mercaderia())
         assert not resultado
+
+    #
+    def test_dado_contenedor_que_contiene_mercaderias_cuando_llega_al_puerto_entonces_se_vacia_el_contenedor(self):
+        verificar_restricciones_mercaderia = Mock()
+        verificar_restricciones_mercaderia.verificar_restricciones.return_value = None 
+        builder_alimenticio = BuilderAlimenticio()
+        director = Director()
+        director.builder = builder_alimenticio
+        contenedor = director.crear_contenedor_alimenticio(444, False)
+        mercaderia_1 = Mercaderia(2, 2.3,2 ,1, 235, "alimenticia")
+        mercaderia_2 = Mercaderia(2, 2.3,2 ,1, 235, "alimenticia")
+        contenedor.cargar_mercaderia(mercaderia_1, verificar_restricciones_mercaderia)
+        contenedor.cargar_mercaderia(mercaderia_2, verificar_restricciones_mercaderia)
+        self.assertNotEqual(len(contenedor.get_mercaderias()),0)
+        contenedor.vaciar_mercaderia_contenedor()
+        self.assertEqual(len(contenedor.get_mercaderias()), 0)
+        self.assertEqual(contenedor.get_peso_ocupado(), 0)
+        self.assertEqual(contenedor.get_volumen_ocupado(), 0)
+
+    

@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 class Builder(ABC): 
     
     @abstractmethod
-    def reset(self, id, es_especial):
+    def builder(self, id, es_especial):
         pass
     
     @abstractmethod

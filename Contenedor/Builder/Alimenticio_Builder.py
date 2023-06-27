@@ -8,7 +8,7 @@ class BuilderAlimenticio(BuilderComun):
         pass
     
     @override
-    def reset(self, id, es_especial):
+    def builder(self, id, es_especial):
         self.contenedor = Alimenticio(id, es_especial)
         return self
     

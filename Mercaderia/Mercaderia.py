@@ -57,7 +57,7 @@ class Mercaderia():
     def __hash__(self):
         return hash(self.__id)
     
-    def obtener_ganancia_mercaderia(id_mercaderia, pedido):  
+    def obtener_ganancia_mercaderia(self,id_mercaderia, pedido):  
         ganancia_mercaderia = 0.0  
         ganancia_mercaderia =  pedido.obtener_ganancia_pedido(id_mercaderia)
         return ganancia_mercaderia
